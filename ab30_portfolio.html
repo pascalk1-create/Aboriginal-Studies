@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AB30 Portfolio — Collection of Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --earth:#13100a;
+  --bark:#1e1609;
+  --rust:#7d3318;
+  --ochre:#b85c2a;
+  --gold:#c9952e;
+  --sage:#4a6340;
+  --sky:#2e5070;
+  --bone:#f0e6d0;
+  --parch:#e8d9bd;
+  --mist:rgba(240,230,208,0.06);
+  --t1:#b85c2a;
+  --t2:#4a6340;
+  --t3:#2e5070;
+  --t4:#7a3f7a;
+}
+
+body{
+  background:var(--earth);
+  color:var(--bone);
+  font-family:'Lora',Georgia,serif;
+  line-height:1.7;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(19,16,10,0.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,149,46,0.15);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  flex-wrap:wrap;gap:0;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-size:18px;font-style:italic;
+  color:var(--gold);
+  padding:16px 0;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.nav-links{display:flex;gap:0}
+.nav-link{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(240,230,208,0.4);
+  padding:20px 16px;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all .2s;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.nav-link:hover{color:rgba(240,230,208,.8)}
+.nav-link.t1:hover,.nav-link.t1.active{color:var(--t1);border-bottom-color:var(--t1)}
+.nav-link.t2:hover,.nav-link.t2.active{color:var(--t2);border-bottom-color:var(--t2)}
+.nav-link.t3:hover,.nav-link.t3.active{color:var(--t3);border-bottom-color:var(--t3)}
+.nav-link.t4:hover,.nav-link.t4.active{color:var(--t4);border-bottom-color:var(--t4)}
+.nav-link.home:hover,.nav-link.home.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:80px 24px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 40%,rgba(184,92,42,0.12) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%,rgba(46,80,112,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 20%,rgba(74,99,64,0.08) 0%,transparent 60%);
+}
+.hero-rule{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 28px;
+}
+.hero-eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:5px;
+  color:var(--ochre);text-transform:uppercase;
+  margin-bottom:20px;
+  position:relative;
+}
+.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,8vw,96px);
+  font-weight:900;line-height:.9;
+  color:var(--bone);letter-spacing:-3px;
+  position:relative;
+  margin-bottom:6px;
+}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(16px,3vw,26px);
+  font-style:italic;font-weight:400;
+  color:rgba(240,230,208,0.5);
+  margin-top:10px;
+  position:relative;
+}
+.hero-divider{
+  width:1px;height:60px;
+  background:linear-gradient(to bottom,rgba(201,149,46,.4),transparent);
+  margin:36px auto;
+  position:relative;
+}
+.hero-intro{
+  font-size:clamp(15px,2vw,19px);
+  line-height:1.85;
+  color:rgba(240,230,208,0.65);
+  max-width:680px;
+  font-style:italic;
+  font-weight:400;
+  position:relative;
+}
+.hero-intro strong{color:var(--bone);font-style:normal}
+
+.theme-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:2px;
+  max-width:860px;width:100%;
+  margin-top:60px;
+  position:relative;
+}
+.theme-chip{
+  padding:22px 20px;
+  cursor:pointer;
+  border:1px solid rgba(240,230,208,0.07);
+  transition:all .25s;
+  text-align:left;
+}
+.theme-chip:hover{background:rgba(240,230,208,.04)}
+.chip-num{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;
+  margin-bottom:8px;
+}
+.chip-label{
+  font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:700;
+  line-height:1.2;
+  color:var(--bone);
+}
+.theme-chip[data-t="1"] .chip-num{color:var(--t1)}
+.theme-chip[data-t="2"] .chip-num{color:var(--t2)}
+.theme-chip[data-t="3"] .chip-num{color:var(--t3)}
+.theme-chip[data-t="4"] .chip-num{color:var(--t4)}
+.theme-chip[data-t="1"]:hover{border-color:rgba(184,92,42,.3)}
+.theme-chip[data-t="2"]:hover{border-color:rgba(74,99,64,.3)}
+.theme-chip[data-t="3"]:hover{border-color:rgba(46,80,112,.3)}
+.theme-chip[data-t="4"]:hover{border-color:rgba(122,63,122,.3)}
+
+/* ── SECTIONS ── */
+.section{display:none}
+.section.active{display:block}
+
+/* ── THEME HERO ── */
+.theme-hero{
+  padding:100px 40px 60px;
+  text-align:center;
+  position:relative;
+}
+.theme-hero::after{
+  content:'';
+  position:absolute;bottom:0;left:10%;right:10%;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(240,230,208,0.1),transparent);
+}
+.theme-badge{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:4px;
+  text-transform:uppercase;
+  padding:5px 16px;border-radius:30px;
+  display:inline-block;margin-bottom:22px;
+}
+.t1 .theme-badge,.theme-badge.t1{background:rgba(184,92,42,0.15);color:var(--t1)}
+.t2 .theme-badge,.theme-badge.t2{background:rgba(74,99,64,0.15);color:#7ab068}
+.t3 .theme-badge,.theme-badge.t3{background:rgba(46,80,112,0.15);color:#6a9cc0}
+.t4 .theme-badge,.theme-badge.t4{background:rgba(122,63,122,0.15);color:#b07ab0}
+
+.theme-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,6vw,72px);
+  font-weight:900;line-height:.95;letter-spacing:-2px;
+  color:var(--bone);margin-bottom:10px;
+}
+.theme-title em{font-style:italic}
+.t1 .theme-title em{color:var(--t1)}
+.t2 .theme-title em{color:#7ab068}
+.t3 .theme-title em{color:#6a9cc0}
+.t4 .theme-title em{color:#b07ab0}
+.theme-story-label{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(14px,2vw,18px);
+  font-style:italic;color:rgba(240,230,208,0.45);
+  margin-top:8px;
+}
+
+/* ── CONTENT BLOCKS ── */
+.content-wrap{max-width:900px;margin:0 auto;padding:60px 40px 80px}
+
+.content-block{margin-bottom:56px}
+.block-label{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(240,230,208,0.25);
+  padding-bottom:10px;
+  margin-bottom:20px;
+  border-bottom:1px solid rgba(240,230,208,0.06);
+}
+.block-heading{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(18px,3vw,26px);
+  font-weight:700;line-height:1.2;
+  color:var(--bone);margin-bottom:16px;
+}
+.block-body{
+  font-size:16px;line-height:1.85;
+  color:rgba(240,230,208,0.68);
+}
+.block-body p{margin-bottom:14px}
+.block-body p:last-child{margin-bottom:0}
+.block-body strong{color:var(--bone);font-weight:600}
+.block-body em{font-style:italic}
+
+.pull-quote{
+  margin:36px 0;
+  padding:28px 32px;
+  border-left:3px solid;
+  background:rgba(240,230,208,0.03);
+  border-radius:0 12px 12px 0;
+  position:relative;
+}
+.t1 .pull-quote{border-color:var(--t1)}
+.t2 .pull-quote{border-color:#7ab068}
+.t3 .pull-quote{border-color:#6a9cc0}
+.t4 .pull-quote{border-color:#b07ab0}
+.pull-quote-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(16px,2.5vw,21px);
+  font-style:italic;line-height:1.55;
+  color:rgba(240,230,208,0.75);
+  margin-bottom:10px;
+}
+.pull-quote-attr{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:2px;
+  color:rgba(240,230,208,0.3);
+  text-transform:uppercase;
+}
+
+.perspective-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;margin:24px 0;
+}
+@media(max-width:600px){.perspective-grid{grid-template-columns:1fr}}
+.perspective-card{
+  padding:24px 22px;
+  background:rgba(240,230,208,0.03);
+  border:1px solid rgba(240,230,208,0.07);
+}
+.persp-label{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.t1 .persp-label{color:var(--t1)}
+.t2 .persp-label{color:#7ab068}
+.t3 .persp-label{color:#6a9cc0}
+.t4 .persp-label{color:#b07ab0}
+.persp-text{font-size:14px;line-height:1.75;color:rgba(240,230,208,0.6)}
+
+.affected-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:12px;
+  margin:16px 0;
+}
+.affected-list li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:15px;line-height:1.7;
+  color:rgba(240,230,208,0.65);
+}
+.affected-list li::before{
+  content:'→';
+  flex-shrink:0;margin-top:2px;font-family:'Space Mono',monospace;font-size:12px;
+}
+.t1 .affected-list li::before{color:var(--t1)}
+.t2 .affected-list li::before{color:#7ab068}
+.t3 .affected-list li::before{color:#6a9cc0}
+.t4 .affected-list li::before{color:#b07ab0}
+
+.reflection-block{
+  margin-top:40px;
+  padding:36px;
+  border:1px solid rgba(240,230,208,0.08);
+  border-radius:4px;
+  background:rgba(240,230,208,0.02);
+  position:relative;
+}
+.reflection-block::before{
+  content:'REFLECTION';
+  font-family:'Space Mono',monospace;
+  font-size:8px;letter-spacing:4px;
+  position:absolute;top:-1px;left:20px;
+  transform:translateY(-50%);
+  background:var(--earth);
+  padding:0 12px;
+  color:rgba(240,230,208,0.25);
+}
+.reflection-text{
+  font-size:17px;line-height:1.9;
+  color:rgba(240,230,208,0.7);
+  font-style:italic;
+}
+.reflection-text p{margin-bottom:14px}
+.reflection-text p:last-child{margin-bottom:0}
+.reflection-text strong{color:var(--bone);font-style:normal;font-weight:600}
+
+.theme-rule{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(240,230,208,0.12),transparent);
+  margin:40px 0;
+}
+
+/* ── CONNECTIONS TAG ── */
+.connections-wrap{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin-top:16px;
+}
+.conn-tag{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:1px;
+  padding:5px 12px;border-radius:2px;
+  border:1px solid rgba(240,230,208,0.1);
+  color:rgba(240,230,208,0.35);
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid rgba(240,230,208,0.08);
+  padding:40px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--gold)}
+.footer-right{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(240,230,208,0.2);text-transform:uppercase}
+
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .nav-link{padding:16px 10px;font-size:8px}
+  .content-wrap{padding:40px 20px 60px}
+  .theme-hero{padding:80px 20px 48px}
+  footer{padding:30px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="topNav">
+  <a class="nav-brand" href="#" onclick="showSection('home')">AB30 Portfolio</a>
+  <div class="nav-links">
+    <a class="nav-link home active" onclick="showSection('home')">Home</a>
+    <a class="nav-link t1" onclick="showSection('t1')">Theme I</a>
+    <a class="nav-link t2" onclick="showSection('t2')">Theme II</a>
+    <a class="nav-link t3" onclick="showSection('t3')">Theme III</a>
+    <a class="nav-link t4" onclick="showSection('t4')">Theme IV</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HOME
+══════════════════════════════════════════ -->
+<div id="home" class="section active">
+  <div class="hero">
+    <div class="hero-rule"></div>
+    <div class="hero-eyebrow">Aboriginal Studies 30 · Mr. Paul Kuster</div>
+    <h1 class="hero-title">Collection<br>of <em>Stories</em></h1>
+    <p class="hero-name">A Digital Portfolio</p>
+    <div class="hero-divider"></div>
+    <p class="hero-intro">
+      "Writing about Aboriginal themes means joining the dots from the colonial policies of the past to the problems faced by First Nations, Métis, and Inuit today. It means acknowledging the wrongs and the pain."<br>
+      <strong style="font-size:13px;font-family:'Space Mono',monospace;letter-spacing:1px;opacity:.5">— Lynda A. Archer</strong>
+    </p>
+    <p class="hero-intro" style="margin-top:28px">
+      This portfolio is my <strong>personal journey</strong> through four themes that define the Indigenous experience in Canada and around the world. Each entry explores a real story or issue — examined from multiple perspectives, connected to the broader themes of rights, land, society, and global justice.
+    </p>
+
+    <div class="theme-grid">
+      <div class="theme-chip" data-t="1" onclick="showSection('t1')">
+        <div class="chip-num">Theme I</div>
+        <div class="chip-label">Aboriginal Rights &amp; Self-Government</div>
+      </div>
+      <div class="theme-chip" data-t="2" onclick="showSection('t2')">
+        <div class="chip-num">Theme II</div>
+        <div class="chip-label">Aboriginal Land Claims</div>
+      </div>
+      <div class="theme-chip" data-t="3" onclick="showSection('t3')">
+        <div class="chip-num">Theme III</div>
+        <div class="chip-label">Aboriginal Peoples in Canadian Society</div>
+      </div>
+      <div class="theme-chip" data-t="4" onclick="showSection('t4')">
+        <div class="chip-num">Theme IV</div>
+        <div class="chip-label">Aboriginal World Issues</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">Collection of Stories</div>
+    <div class="footer-right">Aboriginal Studies 30 · Calgary Catholic School District</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THEME I — RIGHTS & SELF-GOVERNMENT
+     Story: Bill C-5 & the right to FPIC
+══════════════════════════════════════════ -->
+<div id="t1" class="section t1">
+  <div class="theme-hero">
+    <span class="theme-badge t1">Theme I</span>
+    <h2 class="theme-title">Aboriginal Rights &amp;<br><em>Self-Government</em></h2>
+    <p class="theme-story-label">Story: Bill C-5 — When "National Interest" Overrides Indigenous Consent</p>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="content-block">
+      <div class="block-label">The Issue</div>
+      <div class="block-heading">What is this story about?</div>
+      <div class="block-body">
+        <p>In June 2025, the federal government passed <strong>Bill C-5 — the One Canadian Economy Act</strong>. It created a new Federal Major Projects Office with the power to fast-track major infrastructure projects — pipelines, mining developments, energy corridors, ports — deemed to be in the "national interest." Approval timelines were cut from five years to two, and Cabinet was granted the ability to override existing environmental and Indigenous rights legislation.</p>
+        <p>The critical issue: the bill does not require <strong>Free, Prior and Informed Consent (FPIC)</strong> from Indigenous peoples whose traditional territories these projects would cross. It only requires "consultation" — a far weaker standard. An amendment specifically requiring FPIC, supported by 28 senators, was voted down. The Assembly of First Nations was given <strong>one week</strong> to review a bill that would reshape their rights for decades.</p>
+        <p>This story sits at the heart of what Aboriginal rights and self-government mean in practice: not what is written in legislation, but what happens when Indigenous voices conflict with federal economic goals.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <div class="pull-quote-text">"Canada cannot build a nation by bulldozing through the rights of the original Nations of this land."</div>
+      <div class="pull-quote-attr">— Drew Lafond, Indigenous Bar Association President, 2025</div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Multiple Perspectives</div>
+      <div class="block-heading">How is this issue seen differently?</div>
+      <div class="perspective-grid">
+        <div class="perspective-card">
+          <div class="persp-label">Federal Government</div>
+          <div class="persp-text">Ottawa argues Bill C-5 is necessary to defend Canada against U.S. tariff threats and build economic resilience. The government says it does include consultation requirements and that the projects will create jobs and infrastructure that benefit all Canadians, including Indigenous communities through equity partnership programs.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Indigenous Nations</div>
+          <div class="persp-text">First Nations leaders call it a betrayal of reconciliation. FPIC is a right enshrined in UNDRIP — which Canada made into federal law in 2021. Consultation without the power to say no is not consent. Senator Paul Prosper stated: "Indigenous peoples are too often painted as barriers to progress." Nine Ontario First Nations filed a lawsuit.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Environmentalists</div>
+          <div class="persp-text">Environmental groups note that the same reviews being bypassed were specifically designed to protect ecologically sensitive lands — many of which are also culturally significant to Indigenous peoples. Removing these protections speeds up projects with potentially irreversible consequences.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">General Public</div>
+          <div class="persp-text">Public polling shows most Canadians support faster project approvals but are conflicted about bypassing environmental reviews. Many Canadians also say reconciliation is important — but don't always connect it to economic policy decisions like this one.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Who Is Affected</div>
+      <div class="block-heading">Who bears the impact of this issue?</div>
+      <div class="block-body">
+        <ul class="affected-list">
+          <li><strong>First Nations on traditional territories</strong> — particularly those whose lands sit in the path of proposed pipelines, mining corridors, and energy projects. Their cultural sites, water sources, and treaty-protected lands are directly at risk.</li>
+          <li><strong>Future generations of Indigenous peoples</strong> — rights established or eroded now shape what sovereignty means for the next 100 years.</li>
+          <li><strong>The environment and ecosystems</strong> — accelerated approvals mean less time to assess cumulative impacts on watersheds, wildlife, and climate.</li>
+          <li><strong>The principle of reconciliation</strong> — every time economic urgency is used to override Indigenous consent, the credibility of Canada's reconciliation commitments is diminished.</li>
+          <li><strong>All Canadians</strong> — the relationship between Indigenous and non-Indigenous Canada affects the moral foundation of this country.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="theme-rule"></div>
+
+    <div class="content-block">
+      <div class="block-label">Theme Connection</div>
+      <div class="block-heading">How does this connect to Aboriginal Rights &amp; Self-Government?</div>
+      <div class="block-body">
+        <p>Self-government means the right of Indigenous peoples to make decisions about their own lands, communities, and futures — without requiring permission from the Crown. Bill C-5 is a direct challenge to this principle. It reasserts federal supremacy over Indigenous territories in the name of economic development, using the same logic that has justified colonial policy for 150 years: Ottawa knows best.</p>
+        <p>The right to FPIC — Free, Prior and Informed Consent — is not a procedural nicety. It is the legal and moral expression of self-government applied to land. Canada enshrined it in law through UNDRIP in 2021, then effectively suspended it through Bill C-5 in 2025. That contradiction is the story of Aboriginal rights in Canada: rights recognized in principle, overridden in practice whenever they are inconvenient.</p>
+      </div>
+      <div class="connections-wrap">
+        <span class="conn-tag">UNDRIP</span>
+        <span class="conn-tag">FPIC</span>
+        <span class="conn-tag">Section 35</span>
+        <span class="conn-tag">Treaty Rights</span>
+        <span class="conn-tag">Duty to Consult</span>
+        <span class="conn-tag">Reconciliation</span>
+        <span class="conn-tag">Self-Determination</span>
+      </div>
+    </div>
+
+    <div class="reflection-block">
+      <div class="reflection-text">
+        <p>This story made me angry — and then made me think about why it made me angry. The federal government isn't acting illegally in the traditional sense. They passed a law. They held votes. Everything happened through the system. And yet the result is a clear rollback of Indigenous rights. That tells me something important: <strong>the system itself was not designed with Indigenous peoples as equal partners.</strong></p>
+        <p>What strikes me most is the timeline contradiction. In 2021, Canada made UNDRIP federal law — a commitment to Indigenous rights that took decades of advocacy to achieve. Four years later, in 2025, a new government used economic urgency to functionally bypass it. Rights that take generations to establish can be eroded in a single parliamentary session.</p>
+        <p>I believe genuine self-government requires more than recognition — it requires a genuine veto. Not a checkbox consultation, but the actual power to say no. Until "consent" in FPIC means what it says, Aboriginal rights remain conditional — granted by the Crown when convenient, taken back when not.</p>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-left">Theme I — Rights &amp; Self-Government</div>
+    <div class="footer-right">AB30 Portfolio · Mr. Paul Kuster</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THEME II — LAND CLAIMS
+     Story: Wet'suwet'en & the Coastal GasLink pipeline
+══════════════════════════════════════════ -->
+<div id="t2" class="section t2">
+  <div class="theme-hero">
+    <span class="theme-badge t2">Theme II</span>
+    <h2 class="theme-title">Aboriginal<br><em>Land Claims</em></h2>
+    <p class="theme-story-label">Story: Wet'suwet'en Nation &amp; the Coastal GasLink Pipeline</p>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="content-block">
+      <div class="block-label">The Issue</div>
+      <div class="block-heading">What is this story about?</div>
+      <div class="block-body">
+        <p>The <strong>Wet'suwet'en Nation</strong> of northern British Columbia has never signed a treaty with Canada. Their traditional territory — approximately 22,000 square kilometres of boreal forest, rivers, and wetlands — was never ceded. Under Canadian law, and more importantly under Wet'suwet'en law, this land remains theirs.</p>
+        <p>Beginning in 2019 and intensifying through 2020 and beyond, the hereditary chiefs of the Wet'suwet'en — the traditional governing authority — opposed construction of the <strong>Coastal GasLink (CGL) pipeline</strong> through their unceded territory. The pipeline, a $14.5-billion project carrying natural gas from northeastern BC to a liquefied natural gas facility on the coast, was approved by the BC and federal governments and had agreements with elected band councils — but not the consent of the hereditary chiefs.</p>
+        <p>This distinction is crucial: <strong>elected band councils</strong> are a creation of the federal Indian Act. <strong>Hereditary chiefs</strong> are the traditional Indigenous governance structure that predates colonization. The government chose to recognize only the structure it created, not the one that actually holds traditional authority over the land.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <div class="pull-quote-text">"We have never ceded or surrendered our lands. We are not fighting a pipeline. We are defending our home."</div>
+      <div class="pull-quote-attr">— Wet'suwet'en Hereditary Chief, 2020</div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Multiple Perspectives</div>
+      <div class="block-heading">How is this issue seen differently?</div>
+      <div class="perspective-grid">
+        <div class="perspective-card">
+          <div class="persp-label">Wet'suwet'en Hereditary Chiefs</div>
+          <div class="persp-text">The pipeline violates their sovereign authority over unceded land. No treaty was ever signed, meaning their territorial rights were never legally transferred. The government's recognition of elected band councils — not hereditary chiefs — as the legitimate authority is a colonial maneuver to divide Indigenous governance.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">BC &amp; Federal Governments</div>
+          <div class="persp-text">The project received approval from elected band councils representing Wet'suwet'en members. The pipeline creates thousands of jobs and significant economic benefit. RCMP enforcement of pipeline access was characterized as upholding the rule of law and court injunctions.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Some Wet'suwet'en Members</div>
+          <div class="persp-text">The issue exposed an internal division: some community members supported the pipeline for economic benefits and jobs it would bring to their community. This complexity is important — Indigenous communities are not monolithic, and the question of who speaks for the land is itself contested.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Solidarity Movements</div>
+          <div class="persp-text">The Wet'suwet'en resistance sparked solidarity blockades of CN Rail lines across Canada in February 2020, halting freight for days. It became a flashpoint that showed how Indigenous land rights connect to a broader national conversation about reconciliation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Who Is Affected</div>
+      <div class="block-heading">Who bears the impact of this issue?</div>
+      <div class="block-body">
+        <ul class="affected-list">
+          <li><strong>Wet'suwet'en Nation</strong> — their unceded territorial sovereignty is at stake, along with specific sacred sites, salmon-bearing rivers, and the Yintah (their word for their homeland).</li>
+          <li><strong>Indigenous governance systems across Canada</strong> — the question of whether hereditary or band council authority is recognized sets a precedent for every nation with a similar governance structure.</li>
+          <li><strong>BC communities and workers</strong> — the pipeline represents significant employment and economic activity in a remote region.</li>
+          <li><strong>The credibility of Canada's land claims process</strong> — unresolved land claims create legal uncertainty that affects all resource development in BC.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="theme-rule"></div>
+
+    <div class="content-block">
+      <div class="block-label">Theme Connection</div>
+      <div class="block-heading">How does this connect to Aboriginal Land Claims?</div>
+      <div class="block-body">
+        <p>British Columbia is unique in Canada: the vast majority of the province was never covered by treaties. This makes it the largest area of unresolved Aboriginal land claims in the country. The Wet'suwet'en case sits in the centre of this unresolved legal and moral reality.</p>
+        <p>The 1997 Supreme Court of Canada decision in <em>Delgamuukw v. British Columbia</em> — which involved the Wet'suwet'en and neighbouring Gitxsan — affirmed that Aboriginal title exists in BC and was never extinguished. The court said oral histories are valid legal evidence. Yet three decades later, the government is still proceeding with development on land that was legally affirmed as never surrendered. That is the land claims crisis in its purest form.</p>
+      </div>
+      <div class="connections-wrap">
+        <span class="conn-tag">Unceded Territory</span>
+        <span class="conn-tag">Aboriginal Title</span>
+        <span class="conn-tag">Delgamuukw 1997</span>
+        <span class="conn-tag">Hereditary Chiefs</span>
+        <span class="conn-tag">Indian Act</span>
+        <span class="conn-tag">Treaty Process</span>
+        <span class="conn-tag">RCMP Enforcement</span>
+      </div>
+    </div>
+
+    <div class="reflection-block">
+      <div class="reflection-text">
+        <p>What I found most striking about this story was the role of the Indian Act. The federal government created a parallel governance structure — elected band councils — specifically through colonial legislation, and then used those councils' signatures to claim Indigenous consent for a project that the actual traditional authority opposed. It's a form of institutional manipulation so embedded in the system that it looks, from the outside, like normal democratic process.</p>
+        <p><strong>The land is the issue, not just the pipeline.</strong> The Wet'suwet'en aren't simply opposing one infrastructure project — they are asserting that their relationship to their territory, their laws, and their governance systems exist independent of what Canada's legal structure recognizes. That is a profound challenge to how this country understands itself.</p>
+        <p>I believe Canada cannot honestly claim to be pursuing reconciliation while simultaneously using RCMP tactical units to enforce access to land that the Supreme Court already affirmed was never surrendered. These two things cannot coexist.</p>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-left">Theme II — Land Claims</div>
+    <div class="footer-right">AB30 Portfolio · Mr. Paul Kuster</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THEME III — ABORIGINAL PEOPLES IN CANADIAN SOCIETY
+     Story: The MMIWG Crisis
+══════════════════════════════════════════ -->
+<div id="t3" class="section t3">
+  <div class="theme-hero">
+    <span class="theme-badge t3">Theme III</span>
+    <h2 class="theme-title">Aboriginal Peoples in<br><em>Canadian Society</em></h2>
+    <p class="theme-story-label">Story: Missing &amp; Murdered Indigenous Women &amp; Girls — A National Crisis</p>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="content-block">
+      <div class="block-label">The Issue</div>
+      <div class="block-heading">What is this story about?</div>
+      <div class="block-body">
+        <p>Indigenous women and girls in Canada go missing and are murdered at rates that are completely disproportionate to their share of the population. Although Indigenous women make up approximately <strong>5% of Canada's female population</strong>, they account for <strong>24% of all women killed in Canada</strong>. In some provinces and territories, that figure reaches over 50%.</p>
+        <p>In 2019, the National Inquiry into Missing and Murdered Indigenous Women and Girls released its final report after three years of hearings with over 2,000 survivors, family members, and witnesses. Its central conclusion: what is happening to Indigenous women and girls in Canada constitutes <strong>genocide</strong> — a race-based genocide carried out through deliberate colonial policies and ongoing systemic failures.</p>
+        <p>The crisis is not simply a criminal justice problem. It is the visible endpoint of overlapping systems — poverty, lack of housing, under-resourced policing in Indigenous communities, overrepresentation in child welfare systems, and the intergenerational trauma of residential schools — all converging on the most marginalized people in this country.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <div class="pull-quote-text">"This is genocide. Not a word to use lightly, but the right word, supported by the evidence."</div>
+      <div class="pull-quote-attr">— National Inquiry into Missing &amp; Murdered Indigenous Women &amp; Girls, Final Report, 2019</div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Multiple Perspectives</div>
+      <div class="block-heading">How is this issue seen differently?</div>
+      <div class="perspective-grid">
+        <div class="perspective-card">
+          <div class="persp-label">Indigenous Families &amp; Survivors</div>
+          <div class="persp-text">Families describe years — sometimes decades — of police indifference to reports of missing loved ones. Many say they were told their daughters or sisters "probably just left." They are not asking for sympathy. They are demanding that Canada treat Indigenous lives with the same urgency it would treat the disappearance of any non-Indigenous woman.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Government Response</div>
+          <div class="persp-text">The federal government accepted the Inquiry's final report and committed to a National Action Plan. However, implementation has been slow and underfunded. Many family members and advocates say the government's response has been more performative than substantive — full of acknowledgment but lacking the structural changes required.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Law Enforcement</div>
+          <div class="persp-text">Police agencies have acknowledged historic failures but resist characterizations of systemic racism in their institutions. Some have implemented Indigenous liaison programs and revised missing persons protocols. Critics say these are insufficient given the scale and duration of the failure.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Non-Indigenous Canadians</div>
+          <div class="persp-text">Awareness has grown significantly — particularly after the Highway of Tears cases and the Inquiry report. But awareness has not translated into the political pressure required for structural change. Many Canadians are unaware of the statistics, and the issue remains underreported in mainstream media relative to its severity.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Who Is Affected</div>
+      <div class="block-heading">Who bears the impact of this issue?</div>
+      <div class="block-body">
+        <ul class="affected-list">
+          <li><strong>Indigenous women, girls, and 2-Spirit people</strong> — who face violence at rates that are both a crisis and a consequence of specific colonial policies.</li>
+          <li><strong>Families and communities</strong> — the generational trauma of unresolved cases, inadequate investigations, and continued loss compounds over time.</li>
+          <li><strong>Indigenous communities broadly</strong> — the vulnerability created by poverty, housing crises, and underfunded services is the soil in which this violence grows.</li>
+          <li><strong>Canadian society</strong> — a country that tolerates the genocide of its most marginalized peoples cannot call itself a just society. This is a moral failure that belongs to all of us.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="theme-rule"></div>
+
+    <div class="content-block">
+      <div class="block-label">Theme Connection</div>
+      <div class="block-heading">How does this connect to Aboriginal Peoples in Canadian Society?</div>
+      <div class="block-body">
+        <p>The MMIWG crisis is not a tragedy that happened to Indigenous peoples despite Canadian society — it is one that happened <em>because of</em> how Canadian society was structured. The residential school system broke family structures. The Sixties Scoop removed children from their communities. The child welfare system continues to do so at epidemic rates. Poverty, addiction, and housing insecurity in Indigenous communities trace directly back to land dispossession and cultural destruction.</p>
+        <p>When Indigenous women and girls are in dangerous situations, the systems that Canadian society built — policing, child welfare, social services, justice — have consistently failed them. That failure is not random. It reflects whose lives the system was designed to protect, and whose it was not. That is what it means for Aboriginal peoples to exist within Canadian society: to navigate institutions that were not built with their survival in mind.</p>
+      </div>
+      <div class="connections-wrap">
+        <span class="conn-tag">MMIWG Inquiry 2019</span>
+        <span class="conn-tag">Genocide Finding</span>
+        <span class="conn-tag">Systemic Racism</span>
+        <span class="conn-tag">Residential Schools</span>
+        <span class="conn-tag">Intergenerational Trauma</span>
+        <span class="conn-tag">Highway of Tears</span>
+        <span class="conn-tag">Child Welfare</span>
+      </div>
+    </div>
+
+    <div class="reflection-block">
+      <div class="reflection-text">
+        <p>The word "genocide" stopped me when I first read the Inquiry's conclusion. I had been taught that genocide was something that happened in other countries, in history textbooks, in black and white. The Inquiry's report made me confront the fact that it is the legally and morally accurate word for what has happened — and is still happening — to Indigenous women and girls in Canada.</p>
+        <p>What made the deepest impression on me was hearing that some families waited <strong>years</strong> before police took their missing person reports seriously. A non-Indigenous family in the same city reporting the same disappearance would have received an entirely different response. That differential is not an accident. It is systemic. <strong>Different people receive different protection from the same institutions.</strong></p>
+        <p>I think the most honest thing I can say is that I did not know the scale of this crisis before studying it. And my not knowing is itself part of the problem. These stories are not given the same space in our media, our classrooms, or our national consciousness as they would be if the victims were non-Indigenous. That silence is a form of erasure.</p>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-left">Theme III — Aboriginal Peoples in Canadian Society</div>
+    <div class="footer-right">AB30 Portfolio · Mr. Paul Kuster</div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════
+     THEME IV — ABORIGINAL WORLD ISSUES
+     Story: Indigenous rights vs. development globally — Standing Rock & UNDRIP
+══════════════════════════════════════════ -->
+<div id="t4" class="section t4">
+  <div class="theme-hero">
+    <span class="theme-badge t4">Theme IV</span>
+    <h2 class="theme-title">Aboriginal<br><em>World Issues</em></h2>
+    <p class="theme-story-label">Story: Standing Rock &amp; the Global Indigenous Rights Movement</p>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="content-block">
+      <div class="block-label">The Issue</div>
+      <div class="block-heading">What is this story about?</div>
+      <div class="block-body">
+        <p>In 2016, the <strong>Standing Rock Sioux Tribe</strong> of North Dakota led one of the most significant Indigenous-rights movements in modern American history. At the centre was the <strong>Dakota Access Pipeline (DAPL)</strong> — a 1,886-kilometre oil pipeline routed to cross the Missouri River just upstream from the Standing Rock reservation, threatening the Tribe's primary water source and crossing land with sacred cultural significance.</p>
+        <p>The Standing Rock protest camp — called <em>Oceti Sakowin</em> — grew from a small group of water protectors into a gathering of tens of thousands of people from over 300 Indigenous nations across North America and beyond. It became a global symbol of Indigenous peoples asserting their rights against state-backed corporate development. The hashtag #NoDAPL trended worldwide. Veterans flew in to stand with protesters. The Obama administration temporarily halted the pipeline. When the Trump administration reversed that decision in 2017, construction resumed.</p>
+        <p>Standing Rock was not just about one pipeline. It was a crystallization of a global pattern: <strong>Indigenous peoples around the world are disproportionately located on lands that contain resources others want</strong> — and disproportionately lack the legal and political power to protect those lands.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <div class="pull-quote-text">"Water is life. Mni wiconi." </div>
+      <div class="pull-quote-attr">— Standing Rock Sioux rallying call, Oceti Sakowin camp, 2016</div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Multiple Perspectives</div>
+      <div class="block-heading">How is this issue seen differently?</div>
+      <div class="perspective-grid">
+        <div class="perspective-card">
+          <div class="persp-label">Standing Rock Sioux &amp; Indigenous Water Protectors</div>
+          <div class="persp-text">The pipeline was originally routed through Bismarck, ND — a predominantly white city — and rerouted away when residents raised water safety concerns. It was then rerouted through Standing Rock. The Tribe was not meaningfully consulted. Their water source, sacred sites, and treaty lands were put at risk to protect a different community's water supply.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Pipeline Company &amp; State Governments</div>
+          <div class="persp-text">Dakota Access argued the pipeline had undergone extensive environmental review and received all required permits. State officials supported it for economic reasons — jobs, energy infrastructure, and tax revenue. They characterized protester blockades as illegal trespassing and called for law enforcement action.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">Global Indigenous Rights Movement</div>
+          <div class="persp-text">Standing Rock connected to a worldwide pattern. In Brazil, the Amazon's Indigenous peoples face deforestation. In Australia, the Juukan Gorge — a 46,000-year-old sacred Aboriginal site — was legally demolished by Rio Tinto for iron ore mining in 2020. Indigenous peoples globally are on the front lines of resource extraction, climate change, and land rights violations.</div>
+        </div>
+        <div class="perspective-card">
+          <div class="persp-label">International Law — UNDRIP</div>
+          <div class="persp-text">The UN Declaration on the Rights of Indigenous Peoples (UNDRIP), adopted by the UN General Assembly in 2007, was explicitly designed to protect Indigenous peoples from exactly this scenario. The United States voted against it in 2007 (later endorsing it in 2010). Even where countries have endorsed it, enforcement is nearly nonexistent.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-block">
+      <div class="block-label">Who Is Affected</div>
+      <div class="block-heading">Who bears the impact of this issue?</div>
+      <div class="block-body">
+        <ul class="affected-list">
+          <li><strong>Standing Rock Sioux Nation</strong> — their water supply, sacred sites, and treaty rights were placed at risk. In 2020 a federal court ruled the environmental review had been inadequate and ordered a new one — but the pipeline was already operating.</li>
+          <li><strong>Indigenous peoples globally</strong> — the same pattern repeats on every continent: development is routed through, not around, Indigenous lands.</li>
+          <li><strong>Water and ecosystems</strong> — pipelines crossing rivers create real, documented spill risks for communities downstream.</li>
+          <li><strong>The international human rights framework</strong> — when UNDRIP cannot be enforced, it reveals the gap between the rights the world agrees Indigenous peoples deserve and the rights they actually receive.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="theme-rule"></div>
+
+    <div class="content-block">
+      <div class="block-label">Theme Connection</div>
+      <div class="block-heading">How does this connect to Aboriginal World Issues?</div>
+      <div class="block-body">
+        <p>Standing Rock is inseparable from a global context. The same dynamic plays out from the Amazon to the Arctic, from Papua New Guinea to the Niger Delta: Indigenous peoples, who represent about 5% of the global population, are the stewards of 80% of the world's remaining biodiversity. And they are consistently the first communities displaced when those ecosystems contain something the global economy wants.</p>
+        <p>UNDRIP was supposed to change this. Adopted in 2007 with 143 nations in favour (four voted against — Canada, the US, Australia, and New Zealand — all settler-colonial states with unresolved Indigenous land claims), it established the international right to FPIC over development on Indigenous lands. But international declarations without enforcement mechanisms are just words. Standing Rock demonstrated this globally: the right existed on paper; the pipeline was built anyway.</p>
+        <p>The connection to Canadian issues like Bill C-5 and the Wet'suwet'en pipeline is direct. These are not separate problems. They are the same problem, played out in different legal and geographic contexts. The global Indigenous rights movement recognizes this — which is why nations from New Zealand to Bolivia sent solidarity to Standing Rock in 2016.</p>
+      </div>
+      <div class="connections-wrap">
+        <span class="conn-tag">Standing Rock 2016</span>
+        <span class="conn-tag">DAPL Pipeline</span>
+        <span class="conn-tag">UNDRIP</span>
+        <span class="conn-tag">Water Rights</span>
+        <span class="conn-tag">Global Indigenous Movement</span>
+        <span class="conn-tag">Juukan Gorge</span>
+        <span class="conn-tag">Amazon Deforestation</span>
+        <span class="conn-tag">Settler Colonialism</span>
+      </div>
+    </div>
+
+    <div class="reflection-block">
+      <div class="reflection-text">
+        <p>The detail that haunts me most about Standing Rock is the rerouting. The original pipeline plan ran through Bismarck, a predominantly white city. When residents raised concerns about water safety, the route was changed — to pass through the Standing Rock reservation instead. The government and the company made an explicit decision about whose water supply was more worth protecting. <strong>They chose. It wasn't an oversight. It was a choice.</strong></p>
+        <p>Studying Standing Rock alongside Canadian cases like the Wet'suwet'en and Bill C-5 made me realize that this is not a uniquely American problem, or a uniquely Canadian one. It is a structural feature of how nations built on colonialism relate to the Indigenous peoples who remain. The resource is always more urgent than the rights. The economic case always outweighs the cultural one. The timeline for the project always moves faster than the timeline for consent.</p>
+        <p>I think the most important takeaway for me is that international law without enforcement is a mirror: it shows us what we claim to believe while letting us act otherwise. If UNDRIP cannot stop a pipeline from crossing sacred land in North Dakota, or another from crossing unceded territory in British Columbia, then the gap between the world's stated values and its actual ones remains enormous. <strong>Closing that gap is the work of this generation.</strong></p>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-left">Theme IV — Aboriginal World Issues</div>
+    <div class="footer-right">AB30 Portfolio · Mr. Paul Kuster</div>
+  </footer>
+</div>
+
+<script>
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const map = {home:'home',t1:'t1',t2:'t2',t3:'t3',t4:'t4'};
+  const cls = map[id];
+  if(cls){
+    const el = document.querySelector(`.nav-link.${cls}`);
+    if(el) el.classList.add('active');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
